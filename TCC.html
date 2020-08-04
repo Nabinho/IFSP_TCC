@@ -1,0 +1,823 @@
+<!-- TCC _ GG & GG _ CODIGO HTML JS E CSS -->
+<!--Abertura do Arquino-->
+<!DOCTYPE html>
+<html>
+
+<!------------------------------------------------------------------------------------>
+
+<!-- Inicializacao e Cabecalho -->
+<head>
+  <title>Monitoramento Online</title>
+</head>
+  
+<!------------------------------------------------------------------------------------>
+  
+<!-- AJAX -->
+<!--Chamada da funcao LerDados-->
+<body onload="LerSensores()">
+
+<!------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------>
+
+<!-- JavaScript AJAX para atualizacao dos Valores na pagina -->
+<script type="text/javascript">
+      
+    function LerSensores(){
+      var request = new XMLHttpRequest();
+      request.onreadystatechange = function(){
+        if(this.readyState == 4){
+          if(this.status == 200){
+            if(this.responseText != null){
+              var dados = this.responseText.split('|');
+              
+              console.log("teste: ", this.responseText);
+              console.log("teste2: ", dados);
+
+              document.getElementById("sensor1").innerHTML = dados[0];
+              document.getElementById("sensor2").innerHTML = dados[1];
+              document.getElementById("sensor3").innerHTML = dados[2];
+              document.getElementById("sensor4").innerHTML = dados[3];
+              document.getElementById("sensor5").innerHTML = dados[4];
+              document.getElementById("sensor6").innerHTML = dados[5];
+              document.getElementById("sensor7").innerHTML = dados[6];
+            }
+          }
+        }
+      }
+      request.open("GET","ajax_LerDados", true);
+      request.send(null);
+    }
+      setTimeout('LerSensores()', 10000);
+
+</script>
+
+<!------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------>
+
+<!-- Titulo -->
+<center>
+<div id="home">
+  <section class="titulo">
+    <h1>Monitoramento de Estufa Residencial</h1>
+  </section>
+</div>
+
+<!------------------------------------------------------------------------------------>
+
+<!-- Menu -->
+<ul class="menu">
+  <li class="item"><a class="active" href="#home">Inicio</a></li>
+  <li class="item"><a href="#ar">Ar</a></li>
+  <li class="item"><a href="#solo">Solo</a></li>
+  <li class="item"><a href="#tanque">Nivel</a></li>
+  <li class="item"><a href="#co2">CO2</a></li>
+  <li class="item"><a href="#luz">Luz</a></li>
+  <li class="item"><a href="#ph">pH</a></li>
+  <!--<li class="item"><a href="#graph">Grafico Geral</a></li>-->
+  <li class="item"><a href="#autores">Desenvolvedores</a></li>
+</ul>
+  
+<!------------------------------------------------------------------------------------>
+  
+<!-- Monitoramento do Ar -->
+<div id="ar">
+  <section class="secoes">
+    <h2>Temperatura e Umidade do Ambiente</h2>
+    <section class="valores">
+      <p>Valor lido pelo sensor:</p>
+      <div class="flex-container">
+        <div>
+          <h3 id="sensor1">15.00C</h3>
+        </div>
+        <div>
+          <h3 id="sensor2">70.00%</h3>
+        </div>
+      </div>
+      <br>
+      <p>Valor tomado como base para Temperatura:</p>
+      <h2>20 - 30 C</h2>
+    </section>
+    <section class="images6">
+      <div class="centerFan">
+        <div class="item1">
+        </div>
+        <div class="item2">
+        </div>
+      </div>
+    </section>
+  </section>
+</div>
+  
+<!------------------------------------------------------------------------------------>
+ 
+<!-- Monitoramento do Solo -->
+<div id="solo">
+  <section class="secoes">
+    <h2>Umidade Relativa do Solo</h2>
+    <section class="valores">
+      <p>Valor lido pelo sensor:</p>
+      <h3 id="sensor5">30%</h3>
+      <br>
+      <p>Valor tomado como base para a Umidade de Solo:</p>
+      <h2>40 - 70 %</h2>
+    </section>
+      <section class="images4">
+        <div class="wrap">
+          <div class="drop-outer">
+            <svg class="drop" viewBox="0 0 40 40" version="1.1"
+            xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20" r="20"/>
+            </svg>
+          </div>       
+        </div>
+      </section>
+  </section>
+</div>
+
+<!------------------------------------------------------------------------------------>
+  
+<!-- Monitoramento do Tanque -->
+<div id="tanque">
+  <section class="secoes">
+    <h2>Nivel do Reservatorio Dagua</h2>
+    <section class="valores">
+      <p>Valor lido pelo sensor:</p>
+      <h3 id="sensor7">1</h3>
+      <br>
+      <p>Tanque cheio = 0 \/ Tanque Vazio = 1</p>
+    </section>
+    <section class="images">
+      <div class="cup"></div>
+    </section>
+  </section>
+</div>
+
+<!------------------------------------------------------------------------------------>
+
+<!-- Monitoramento de CO2 -->
+<div id="co2">
+  <section class="secoes">
+    <h2>Controle de CO2</h2>
+    <section class="valores">
+      <p>Valor lido pelo sensor:</p>
+      <h3 id="sensor3">100ppm</h3>
+      <br>
+      <p>Valor tomado como base para a concentracao de CO2</p>
+      <h2>500 - 800 ppm</h2>
+    </section>
+      <section class="images">
+        <div id="smoke">
+          <span class="s0"></span>
+          <span class="s1"></span>
+          <span class="s2"></span>
+          <span class="s3"></span>
+          <span class="s4"></span>
+          <span class="s5"></span>
+          <span class="s6"></span>
+          <span class="s7"></span>
+          <span class="s8"></span>
+          <span class="s9"></span>
+        </div>
+      </section>
+  </section>
+</div>
+  
+<!------------------------------------------------------------------------------------>
+  
+<!-- Monitoramento de Iluminacao -->
+<div id="luz">
+  <section class="secoes">
+    <h2>Iluminacao Ambiente</h2>
+    <section class="valores">
+      <p>Valor lido pelo sensor:</p>
+      <h3 id="sensor4">30%</h3>
+      <br>
+      <p>Ilumincao ligada durante o pediodo de:</p>
+      <h2>8 hrs</h2>
+    </section>
+    <section class="images">
+      <div class="container-sun">
+        <svg class="svg-sun" version="1.1" viewBox="0 0 100 100" preserveAspectRatio="xMinYMin meet">
+          <circle cx="50" cy="50" r="35" id="sun"></circle>
+        </svg>
+      </div>
+    </section>
+  </section>
+</div>
+
+<!------------------------------------------------------------------------------------>
+  
+<!-- Monitoramento do pH -->
+<div id="ph">
+  <section class="secoes">
+    <h2>pH do Solo</h2>
+    <section class="valores">
+      <p>Valor lido pelo sensor:</p>
+      <h3 id="sensor6">14.00</h3>
+      <br>
+      <p>Valor tomado como base para pH de solo:</p>
+      <h2>6 - 6.5</h2>
+    </section>
+    <section class="rcorners1">
+      <a href="https://www.fazfacil.com.br/jardim/ph-solo/" target="_blank"><ul class="bargraph">
+        <li class="roxo">14</li>
+        <li class="lilas">13</li>
+        <li class="purple">12</li>
+        <li class="dark-blue">11</li>
+        <li class="blue">10</li>
+        <li class="light-blue">9</li>
+        <li class="green">8</li>
+        <li class="green-bright">7</li>
+        <li class="green-blue">6</li>
+        <li class="green-yellow">5</li>
+        <li class="yellow-green">4</li>
+        <li class="yellow">3</li>
+        <li class="yellow-orange">2</li>
+        <li class="orange">1</li>
+        <li class="red">0</li>
+      </ul>
+      </a>
+      <q>Clique sobre o valor acima, de acordo com o valor indicado na leitura do sensor.</q>
+    </section>
+  </section>
+</div>
+
+<!------------------------------------------------------------------------------------>
+
+<!-- Secao dos Autores -->
+<div id="autores">
+  <footer class="article__author">
+    <center>
+      <h2>
+        Desenvolvido por:
+      </h2>
+      
+      <section class="article__author-bio">
+        <address class="author">
+          <p>Giovanni de Castro e Gabriel Barbosa</p>
+        </address>
+          <p>
+            <q>Estudantes de Automacao Industrial pelo IFSP Campus Guarulhos, Suporte Tecnico <a href="https://www.robocore.net/loja" target="_blank">RoboCore.net</a> e Auxiliar de Informatica Autonomo, respectivamente.</q>
+          </p>
+          <p>
+            <q>Codigo fonte disponivel no <a href="https://github.com/giovannigrossi?tab=repositories" target="_blank">GitHub</a></q>.
+          </p>
+        </section>
+      </center>
+    </footer>
+  </center>
+</div>
+  
+<!------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------>
+
+<!-- CSS -->
+<style>
+  
+/* Estilizacao da pagina */
+body {
+  background-color: #ffffff;
+  font-family: "Lucida console";
+}
+    
+.titulo {
+  text-align:center;
+  width: 1150px;
+  border: 15px solid #003300;
+  padding: 10px;
+  margin: 30px;
+  color: #003300;
+  font-size: 175%;
+}
+    
+.menu {
+  list-style-type: none;
+  margin: 65px;
+  padding: 0;
+  overflow: hidden;
+  background-color: #2E8B57;
+}
+    
+.item {
+  float: left;
+}
+    
+.item a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+    
+.item a:hover:not(.active) {
+  background-color: #003300;
+}
+    
+.active {
+  background-color: #003300;
+}
+    
+.secoes {
+  width: 1150px;
+  border: 15px solid #2E8B57;
+  padding: 10px;
+  margin: 30px;
+  color: #2E8B57;
+}
+    
+.article__author {
+  width: 1150px;
+  border: 15px solid #003300;
+  padding: 10px;
+  margin: 30px;
+  color: black;
+}
+    
+/* Tabela pH */
+    
+.bargraph {
+  list-style: none;
+  width:800px;
+  padding: 0px;
+}
+    
+ul.bargraph li {
+  height: 30px;
+  color: white;
+  text-align: center;
+  font-style: italic;
+  font-weight:bolder;
+  font-size: 14px;
+  line-height: 35px;
+  padding: 0px 20px;
+}
+    
+ul.bargraph li.roxo {
+  background: #462c83;
+  width: 85%;
+}
+     
+ul.bargraph li.lilas {
+  background: #62469d;
+  width: 80%;
+}
+     
+ul.bargraph li.purple {
+  background: #5a51a2;
+  width: 75%;
+}
+     
+ul.bargraph li.dark-blue {
+  background: #3853a4;
+  width: 70%;
+}
+     
+ul.bargraph li.blue {
+  background: #4690cd;
+  width: 65%;
+}
+     
+ul.bargraph li.light-blue {
+  background: #0ab8b6;
+  width: 60%;
+}
+     
+ul.bargraph li.green {
+  background: #22b46b;
+  width: 55%;
+}
+     
+ul.bargraph li.green-bright {
+  background: #33a949;
+  width: 50%;
+}
+    
+ul.bargraph li.green-blue {
+  background: #4db749;
+  width: 45%;
+}
+     
+ul.bargraph li.green-yellow {
+  background: #84c341;
+  width: 40%;
+}
+     
+ul.bargraph li.yellow-green {
+  background: #b4d433;
+  width: 35%;
+}
+
+ul.bargraph li.yellow {
+  background: #f5ed1c;
+  width: 30%;
+}
+
+ul.bargraph li.yellow-orange {
+  background: #f8c611;
+  width: 25%;
+}
+
+ul.bargraph li.orange {
+  background: #f26724;
+  width: 20%;
+}
+
+ul.bargraph li.red {
+  background: #ee1c25;
+  width: 15%;
+}
+  
+/* Caixas */
+    
+.rcorners1 {
+  border-radius: 25px;
+  border: 5px solid #2e638b;
+  padding: 20px;
+  width: 800px;
+  height: 500px;
+}
+   
+.images {
+  border-radius: 25px;
+  border: 5px solid #2e638b;
+  padding: 20px;
+  width: 800px;
+  height: 400px;
+}
+    
+.images4 {
+  border-radius: 25px;
+  border: 5px solid #2e638b;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 118px;
+  padding-right: 118px;
+  width: 604px;
+  height: 280px;
+}
+    
+.images6 {
+  border-radius: 25px;
+  border: 5px solid #2e638b;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 260px;
+  padding-right: 260px;
+  width: 320px;
+  height: 600px;
+}
+    
+.valores {
+  width: 800px;
+  border-radius: 25px;
+  border: 5px solid #2e638b;
+  padding: 20px;
+  margin: 20px;
+}
+    
+h1 {
+  font-size: 50px;
+}
+    
+h2 {
+  font-size: 35px;
+}
+    
+h3 {
+  font-size: 50px;
+}
+    
+/* Animacoes */
+    
+.flex-container {
+  display: flex;
+  text-align: center;
+  width: 600px
+}
+    
+.flex-container > div {
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+  padding-left: 55px;
+}
+
+.cup {
+  margin-left: 175px;
+  margin-top: 200px;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 180px;
+  border: 6px solid #262626;
+  border-top: 2px solid transparent;
+  border-radius: 15px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background: url(https://image.ibb.co/fmHm66/wave.png);
+  background-position: 0px 350px;
+  background-repeat: repeat-x;
+  animation: filling 10s ease-in-out infinite;
+}
+
+.cup:before {
+  content: '';
+
+  width: 50px;
+  height: 80px;
+  border: 6px solid #fff;
+  right: -57px;
+  top: 30px;
+  border-top-right-radius: 35px;
+  border-bottom-right-radius: 35px;
+}
+
+@keyframes filling {
+  50% {background-position: 3000px 0px;}
+  100% {background-position: 6000px 350px;}
+}
+
+.centerFan{
+  width:150px;
+  height:150px;
+  position: relative;
+  left:10PX;
+  top:225px;
+  border-radius:100%;
+  background:#2e638b;
+  z-index:1;
+  -webkit-animation:rotateAnimation 5s infinite;
+  -moz-animation:rotateAnimation 5s infinite;
+  -o-animation:rotateAnimation 5s infinite;
+  -ms-animation:rotateAnimation 5s infinite;
+  animation:rotateAnimation 5s infinite;
+}
+
+.item1,.item2{
+  width:100px;
+  height:200px;
+  background:#2e638b;
+  position:absolute;
+  border-radius:10px; 
+}
+
+.item1{
+  top:-197px;
+  left:24px;
+ }
+
+.item2{
+ left:24px;
+  top:146px;
+}
+
+@-webkit-keyframes rotateAnimation{
+ 50%{
+    transform-origin: center;
+   transform: rotate(3turn);
+ }
+  100%{
+    transform-origin: center;
+   transform: rotate(5turn);
+
+  } 
+}
+
+@-moz-keyframes rotateAnimation{
+ 50%{
+    transform-origin: center;
+   transform: rotate(3turn);
+ }
+  100%{
+    transform-origin: center;
+   transform: rotate(5turn);
+
+  } 
+}
+
+@-ms-keyframes rotateAnimation{
+ 50%{
+    transform-origin: center;
+   transform: rotate(3turn);
+ }
+  100%{
+    transform-origin: center;
+   transform: rotate(5turn);
+
+  } 
+}
+
+@-o-keyframes rotateAnimation{
+ 50%{
+    transform-origin: center;
+   transform: rotate(3turn);
+ }
+  100%{
+    transform-origin: center;
+   transform: rotate(5turn);
+
+  } 
+}
+
+@keyframes rotateAnimation{
+ 50%{
+    transform-origin: center;
+   transform: rotate(3turn);
+ }
+  100%{
+    transform-origin: center;
+   transform: rotate(5turn);
+
+  } 
+}
+
+.wrap {
+
+  width: 100px;
+  height: 200px;
+  left: 50%;
+  margin-left: 0px;
+  top: 50%;
+  margin-top: 0px;
+}
+
+.drop {
+  width: 40px;
+  height: 40px;
+  left: 50%;
+  margin-left: 0px;
+  margin-top: 50px;
+  animation: drop 2s cubic-bezier(0.55, 0.085, 0.68, 0.53) 0s infinite;
+}
+
+.drop circle {
+  fill: #2a96ed;
+}
+
+.drop-outer {
+  box-sizing: border-box;
+  width: 100px;
+  height: 200px;
+  overflow: hidden;
+  border-bottom-right-radius: 50px;
+  border-bottom-left-radius: 50px;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  background-clip: padding-box;
+  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+}
+
+@keyframes drop {
+  0% {
+    transform: scale3d(0.01,0.01,0.01) translateY(0)
+  }
+  10% {
+    transform: scale3d(1,1,1) 
+  }
+  44% {
+    transform: scale3d(1,1,1) translateY(200px)
+  }
+  100% {
+    transform: scale3d(1,1,1) translateY(200px)
+  }
+}
+
+@keyframes fade-in-out {
+  0% {opacity: 0}
+  42% {opacity: 0}
+  52% {opacity: 1}
+  65% {opacity: 1}
+  100% {opacity: 0}
+}
+
+#smoke {
+  position: absolute;
+  z-index: 3;
+  width: 1px; height: 160px;
+  left: 50%; bottom: 30px;
+}
+
+#smoke span { 
+  display: block;
+  position: absolute;
+  bottom: -3750px; left: 50%; margin-left: -10px;
+  height: 0px; width: 0px;
+  border: 35px solid #4b4b4b;
+  border-radius: 35px;
+  left: -14px; opacity: 0;
+  transform: scale(0.2);
+}
+
+@keyframes smokeL {
+  0%   { transform: scale(0.2) translate(0, 0) }
+  10%  { opacity: 1; transform: scale(0.2) translate(0, -5px) }
+  100% { opacity: 0; transform: scale(1) translate(-20px, -130px) }
+}
+
+@keyframes smokeR {
+  0%   { transform: scale(0.2) translate(0, 0) }
+  10%  { opacity: 1; transform: scale(0.2) translate(0, -5px) }
+  100% { opacity: 0; transform: scale(1) translate(20px, -130px) }
+}
+
+#smoke .s0 { animation: smokeL 10s 0s infinite }
+#smoke .s1 { animation: smokeR 10s 1s infinite }
+#smoke .s2 { animation: smokeL 10s 2s infinite }
+#smoke .s3 { animation: smokeR 10s 3s infinite }
+#smoke .s4 { animation: smokeL 10s 4s infinite }
+#smoke .s5 { animation: smokeR 10s 5s infinite }
+#smoke .s6 { animation: smokeL 10s 6s infinite }
+#smoke .s7 { animation: smokeR 10s 7s infinite }
+#smoke .s8 { animation: smokeL 10s 8s infinite }
+#smoke .s9 { animation: smokeR 10s 9s infinite }
+
+.container-sun{
+  text-align:center;
+  margin-top: 50px;
+}
+
+.svg-sun{
+width:300px;
+height:300px;
+
+-webkit-transform-origin: center center;
+-moz-transform-origin: 50% 50%;
+-o-transform-origin: center center;
+-ms-transform-origin: center center;
+transform-origin:50% 50%;
+
+-webkit-animation: spin 25s linear infinite, sun-glow 3s 0s linear infinite;
+-moz-animation: spin 25s linear infinite, sun-glow 3s 0s linear infinite;
+-o-animation:spin 25s linear infinite, sun-glow 3s 0s linear infinite;
+-ms-animation: spin 25s linear infinite, sun-glow 3s 0s ease-in-out infinite;
+animation: spin 25s linear infinite,sun-glow 3s 0s linear infinite;
+
+}
+
+#sun{
+  stroke-width:18;
+  stroke-dasharray:2;
+  stroke-dashoffset:2;
+}
+
+@-webkit-keyframes sun-glow { 
+  0% { fill: #f1c40f; stroke:#f1c40f;}
+  50% { fill: #e67e22; stroke:#e67e22;}
+  100% { fill: #f1c40f; stroke:#f1c40f;}
+}
+@-moz-keyframes sun-glow { 
+  0% { fill: #f1c40f; stroke:#f1c40f;}
+  50% { fill: #e67e22; stroke:#e67e22;}
+  100% { fill: #f1c40f; stroke:#f1c40f;}
+}
+@-o-keyframes sun-glow { 
+  0% { fill: #f1c40f; stroke:#f1c40f;}
+  50% { fill: #e67e22; stroke:#e67e22;}
+  100% { fill: #f1c40f; stroke:#f1c40f;}
+}
+@-ms-keyframes sun-glow { 
+  0% { fill: #f1c40f; stroke:#f1c40f;}
+  50% { fill: #e67e22; stroke:#e67e22;}
+  100% { fill: #f1c40f; stroke:#f1c40f;}
+}
+@keyframes sun-glow { 
+  0% { fill: #f1c40f; stroke:#f1c40f;}
+  50% { fill: #e67e22; stroke:#e67e22;}
+  100% { fill: #f1c40f; stroke:#f1c40f;}
+}
+
+@-webkit-keyframes spin{
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spin{
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-o-keyframes spin{
+  100% {
+    -o-transform: rotate(360deg);
+  }
+}
+@-ms-keyframes spin{
+  100% {
+    -ms-transform: rotate(360deg);
+  }
+}
+@keyframes spin{
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+</style>
+
+<!------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------>
+
+<!--Encerramento do Arquivo-->
+</html>
+
+<!------------------------------------------------------------------------------------>
